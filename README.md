@@ -30,6 +30,7 @@ JWT通常由三部分组成: 头信息（header）, 消息体（payload）和签
 	"typ":"JWT"
 }
 ````
+
 ####载荷(PAYLOAD)
 
 ````javascript
@@ -47,7 +48,9 @@ JWT通常由三部分组成: 头信息（header）, 消息体（payload）和签
 
 ####签名(SIGNATURE )
 这个签名信息主要由三个部分组成：base64UrlEncode(header) + '.' + base64UrlEncode(payload);
+
 ![20190926115122.png](JWTDemo/20190926115122.png)
+
 我们将上面拼接完的字符串用HS256算法进行加密。在加密的时候，我们还需要提供一个密钥（secret）。加密后的内容也是一个字符串，最后这个字符串就是签名，把这个签名拼接在刚才的字符串后面就能得到完整的jwt。header部分和payload部分如果被篡改，由于篡改者不知道密钥是什么，也无法生成新的signature部分，服务端也就无法通过，在jwt中，消息体是透明的，使用签名可以保证消息不被篡改。
 
 ####JWT 注意事项
